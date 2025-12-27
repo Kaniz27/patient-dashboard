@@ -11,7 +11,7 @@ const columns: TableProps<Hospital>["columns"] = [
     dataIndex: "name",
     key: "name",
     render: (name) => (
-      <div className="flex items-center gap-2">
+      <div className="flex gap-2">
         <BankOutlined className="text-blue-600" />
         <span className="font-semibold">{name}</span>
       </div>
@@ -48,7 +48,7 @@ const columns: TableProps<Hospital>["columns"] = [
 
 const HospitalListTable = () => {
   return (
-    <div className="p-6 mt-10 bg-white rounded-xl shadow">
+    <div className="p-6  bg-white rounded-xl shadow">
       <h2 className="text-[22px] font-semibold mb-4">
         Hospital List
       </h2>

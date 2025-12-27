@@ -54,9 +54,6 @@ body {
 .ant-drawer-body::-webkit-scrollbar {
   display: none;
 }
-.ant-table-cell:first-child {
-  text-align: center !important;
-}
 
 .ant-notification {
   top: 50px !important;

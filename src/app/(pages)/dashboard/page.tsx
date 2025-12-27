@@ -7,7 +7,7 @@ const GoodMorningCard = () => {
   return (
     <div>
       <div
-        className="w-full h-60 rounded-xl bg-cover bg-white bg-center p-6 flex items-center justify-between"
+        className="w-full h-60 rounded-xl bg-cover  bg-white bg-center p-6 flex items-center justify-between"
         style={{ backgroundImage: "url('/Banner.png')" }} // public folder e background
       >
         {/* Left Text Section */}

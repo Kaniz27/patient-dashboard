@@ -40,7 +40,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 const ActivityCard = () => {
   return (
     <div
-      className="bg-white mt-10 rounded-xl p-4"
+      className="bg-white rounded-xl p-4"
       style={{ width: 300, height: 468 }}
     >
       {/* Header */}

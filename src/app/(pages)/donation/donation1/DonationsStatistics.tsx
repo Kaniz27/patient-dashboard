@@ -22,7 +22,7 @@ const COLORS = ["#2b6771", "#4dd0e1", "#ff9800", "#9c27b0"];
 const DonationsStatistics = () => {
   return (
     <div
-      className="mt-6 mx-auto p-4 mr-20 bg-white rounded-xl shadow"
+      className=" mx-auto p-6 bg-white rounded-xl shadow"
       style={{ width: 300, height: 468 }}
     >
       <h2 className="text-xl font-semibold text-[#2b6771] mb-1">

@@ -51,7 +51,7 @@ const MedicalHistoryTable = () => {
   };
 
   return (
-    <div className="p-6 mt-10 bg-white rounded-xl shadow">
+    <div className="p-6 mt-6 bg-white rounded-xl shadow">
       {/* 🔹 Header */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-[22px] font-semibold">Today’s Patient</h2>

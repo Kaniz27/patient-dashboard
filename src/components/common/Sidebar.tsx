@@ -3,8 +3,12 @@
 import { Layout, Menu, MenuProps } from "antd";
 import { DashboardOutlined } from "@ant-design/icons";
 import { useRouter, usePathname } from "next/navigation";
-import { RiSettings2Line, RiShieldUserLine } from "react-icons/ri";
 import {
+  RiSettings2Line,
+  RiShieldUserLine,
+} from "react-icons/ri";
+import {
+  FaHospital,
   FaUserMd,
   FaCalendarCheck,
   FaFileMedical,
@@ -31,60 +35,60 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
     },
     {
       key: "/hospital",
-      icon: <FaUserMd />, 
+      icon: <FaHospital />, // Hospital icon
       label: "Hospital List",
       onClick: () => router.push("/hospital"),
     },
     {
       key: "/doctorprofile",
-      icon: <FaUserMd />, 
-      label: "DoctorProfile",
+      icon: <FaUserMd />, // Doctor icon
+      label: "Doctor Profile",
       onClick: () => router.push("/doctorprofile"),
     },
     {
+      key: "/income",
+      icon: <FaUserMd />, // Doctor icon
+      label: "Income",
+      onClick: () => router.push("/income"),
+    },
+    {
       key: "/appointment",
-      icon: <FaCalendarCheck />, // ✅ Appointment
+      icon: <FaCalendarCheck />, // Appointment icon
       label: "Appointment List",
       onClick: () => router.push("/appointment"),
     },
     {
-      key: "/create-prescription",
-      icon: <FaFileMedical />, // ✅ Medical History
-      label: "Generate Prescription",
-      onClick: () => router.push("/create-prescription"),
-    },
-    {
       key: "/prescription",
-      icon: <FaPrescriptionBottleAlt />, // ✅ Prescription
+      icon: <FaPrescriptionBottleAlt />, // Prescription icon
       label: "Prescription",
       onClick: () => router.push("/prescription"),
     },
     {
       key: "/donation",
-      icon: <FaDonate />, // ✅ Donation
+      icon: <FaDonate />, // Donation icon
       label: "Donation",
       onClick: () => router.push("/donation"),
     },
     {
       key: "/setting",
-      icon: <RiSettings2Line />,
+      icon: <RiSettings2Line />, // Settings icon
       label: "Setting",
       children: [
         {
           key: "/profile",
-          icon: <CgProfile />,
+          icon: <CgProfile />, // Profile icon
           label: "Profile",
           onClick: () => router.push("/profile"),
         },
         {
           key: "/setting/user-management",
-          icon: <LuUsersRound />,
+          icon: <LuUsersRound />, // Users icon
           label: "User Management",
           onClick: () => router.push("/user/setting/user-management"),
         },
         {
           key: "/setting/role-management",
-          icon: <RiShieldUserLine />,
+          icon: <RiShieldUserLine />, // Role/Security icon
           label: "Role Management",
           onClick: () => router.push("/user/setting/role-management"),
         },
@@ -105,7 +109,7 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
         <Image
           src="/sidebar.png"
           alt="Sidebar Logo"
-          width={collapsed ? 40 : 120}
+          width={collapsed ? 60 : 180}
           height={40}
         />
       </div>

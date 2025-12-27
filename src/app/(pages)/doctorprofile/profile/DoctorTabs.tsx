@@ -6,7 +6,7 @@ const DoctorTabs = () => {
   const [activeTab, setActiveTab] = useState<"About" | "Education" | "Experience">("About");
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-xl shadow">
+    <div className="max-w-4xl mx-auto mt-4 p-6 bg-white rounded-xl shadow">
       {/* 🔹 Tabs */}
       <div className="flex justify-between border-b border-gray-300">
         {["About", "Education", "Experience"].map((tab) => (

@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { medicalHistoryData, MedicalHistoryItem } from "@/data/medicalhisrory";
 import { Input, Space, Table, TableProps, Tag, Modal, Button } from "antd";
+import { medicalHistoryData, MedicalHistoryItem } from "@/data/patienthistory";
 
 const { Search } = Input;
 
 /* ---------------- Status Colors ---------------- */
-const statusColors: Record<MedicalHistoryItem["status"], string> = {
+const statusColors: Record<string, string> = {
   Pending: "orange",
   Completed: "green",
   Withdraw: "red",
@@ -18,9 +18,7 @@ const statusColors: Record<MedicalHistoryItem["status"], string> = {
 const MedicalHistoryTable = () => {
   const [data, setData] = useState<MedicalHistoryItem[]>(medicalHistoryData);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPatient, setSelectedPatient] =
-    useState<MedicalHistoryItem | null>(null);
-
+  const [selectedPatient, setSelectedPatient] = useState<MedicalHistoryItem | null>(null);
   const router = useRouter();
 
   /* ---------------- Search ---------------- */
@@ -37,13 +35,12 @@ const MedicalHistoryTable = () => {
     setIsModalOpen(true);
   };
 
-  
+  /* ---------------- Navigate to Prescription ---------------- */
   const navigateToPrescription = (record: MedicalHistoryItem) => {
-   
     router.push(`/create-prescription/${record.id}`);
   };
 
- 
+  /* ---------------- Table Columns ---------------- */
   const columns: TableProps<MedicalHistoryItem>["columns"] = [
     {
       title: "Name",
@@ -52,7 +49,7 @@ const MedicalHistoryTable = () => {
       render: (_, record) => (
         <Space>
           <Image
-            src={record.image}
+            src={record.avatar}
             alt={record.name}
             width={40}
             height={40}
@@ -67,14 +64,7 @@ const MedicalHistoryTable = () => {
       dataIndex: "problems",
       key: "problems",
     },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      render: (status) => (
-        <Tag color={statusColors[status]}>{status}</Tag>
-      ),
-    },
+    
     {
       title: "Date",
       dataIndex: "date",
@@ -120,7 +110,7 @@ const MedicalHistoryTable = () => {
   ];
 
   return (
-    <div className="p-6 mt-10 bg-white rounded-xl shadow">
+    <div className="p-6  bg-white rounded-xl shadow">
       {/* 🔹 Header */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-[22px] font-semibold">Today’s Patient</h2>
@@ -169,6 +159,18 @@ const MedicalHistoryTable = () => {
             <p>
               <strong>Date:</strong> {selectedPatient.date} at{" "}
               {selectedPatient.time}
+            </p>
+            <p>
+              <strong>Email:</strong> {selectedPatient.email}
+            </p>
+            <p>
+              <strong>Gender:</strong> {selectedPatient.gender}
+            </p>
+            <p>
+              <strong>Age:</strong> {selectedPatient.age}
+            </p>
+            <p>
+              <strong>Address:</strong> {selectedPatient.address}
             </p>
           </div>
         )}

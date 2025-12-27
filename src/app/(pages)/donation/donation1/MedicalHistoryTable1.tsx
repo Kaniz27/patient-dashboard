@@ -83,7 +83,7 @@ const columns: TableProps<MedicalHistoryItem>["columns"] = [
 /* ---------------- Component ---------------- */
 const MedicalHistoryTable = () => {
   return (
-    <div className="mx-auto mt-10 w-[831px] bg-white p-6 rounded-xl shadow">
+    <div className="mx-auto mt-4 bg-white p-4 rounded-xl shadow">
       <h2 className="mb-4 text-[22px] font-semibold">Appointment List</h2>
 
       <Table<MedicalHistoryItem>

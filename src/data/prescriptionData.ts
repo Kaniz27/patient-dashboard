@@ -108,10 +108,10 @@ export const prescriptionData: PrescriptionData = {
   },
 
   riskFactors: [
-    "ECG, CXR (P/A), RBS",
-    "Echo 2D / Doppler",
-    "S. TSH, S. Creatinine",
-    "CBC, FBS, 2HABF",
-    "HbA1C",
+    "Always keep learning – Medicine never stops evolving.",
+    "Really listen to patients.",
+    "Protect your own health.",
+    "Document clearly and timely.",
+    "Treat the whole team with respect.",
   ],
 };

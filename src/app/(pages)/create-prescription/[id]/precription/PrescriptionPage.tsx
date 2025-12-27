@@ -18,13 +18,19 @@ const PrescriptionPage = () => {
   const patientId = params.id;
   const [patient, setPatient] = useState<MedicalHistoryItem | null>(null);
 
-  useEffect(() => {
+  // 🔹 Filter patient by ID
+  const fetchPatient = () => {
     if (patientId) {
       const found = medicalHistoryData.find(
         (item) => item.id.toString() === patientId
       );
-      if (found) setPatient(found);
+      setPatient(found || null);
     }
+  };
+
+  // 🔹 Run on page load
+  useEffect(() => {
+    fetchPatient();
   }, [patientId]);
 
   if (!patient) return <p className="text-center mt-10">Patient not found</p>;
@@ -37,7 +43,7 @@ const PrescriptionPage = () => {
       {/* 🔹 Image + Name + Designation */}
       <div className="flex items-center gap-6">
         <Image
-          src="/images/profile/doctor.jpg" // replace with patient avatar if available
+          src={patient.avatar || "/images/profile/doctor.jpg"} // use avatar if available
           alt={patient.name}
           width={120}
           height={120}
@@ -57,9 +63,7 @@ const PrescriptionPage = () => {
             <MailOutlined className="text-blue-500" />
             <span>Email</span>
           </div>
-          <span className="ml-6 text-gray-600">
-            {patient.email || "dr.kararmahmud@gmail.com"}
-          </span>
+          <span className="ml-6 text-gray-600">{patient.email}</span>
         </div>
 
         {/* Phone */}
@@ -68,9 +72,7 @@ const PrescriptionPage = () => {
             <PhoneOutlined className="text-green-500" />
             <span>Phone</span>
           </div>
-          <span className="ml-6 text-gray-600">
-            {patient.phone || "01601524797"}
-          </span>
+          <span className="ml-6 text-gray-600">{patient.phone}</span>
         </div>
 
         {/* Gender */}
@@ -79,7 +81,7 @@ const PrescriptionPage = () => {
             <UserOutlined className="text-purple-500" />
             <span>Gender</span>
           </div>
-          <span className="ml-6 text-gray-600">{patient.gender || "Male"}</span>
+          <span className="ml-6 text-gray-600">{patient.gender}</span>
         </div>
 
         {/* Age */}
@@ -88,7 +90,7 @@ const PrescriptionPage = () => {
             <UserOutlined className="text-purple-500" />
             <span>Age</span>
           </div>
-          <span className="ml-6 text-gray-600">{patient.age || "26 years"}</span>
+          <span className="ml-6 text-gray-600">{patient.age}</span>
         </div>
 
         {/* Address */}
@@ -97,9 +99,7 @@ const PrescriptionPage = () => {
             <HomeOutlined className="text-orange-500" />
             <span>Address</span>
           </div>
-          <span className="ml-6 text-gray-600">
-            {patient.address || "47 W 13th St, New York, NY 10011, USA"}
-          </span>
+          <span className="ml-6 text-gray-600">{patient.address}</span>
         </div>
 
         {/* Hospital */}
@@ -108,26 +108,22 @@ const PrescriptionPage = () => {
             <BankOutlined className="text-red-500" />
             <span>Hospital</span>
           </div>
-          <span className="ml-6 text-gray-600">
-            {patient.hospital || "Apollo Hospitals"}
-          </span>
+          <span className="ml-6 text-gray-600">{patient.hospital}</span>
         </div>
       </div>
 
       {/* 🔹 Buttons */}
       <div className="flex gap-2 mt-1">
-  <Button 
-  type="primary" 
-  className="h-7 px-2 text-xl text-white bg-[#33aeab]! border-none"
->
-  Download
-</Button>
+        <Button
+          type="primary"
+          className="h-7 px-2 text-xl text-white bg-[#33aeab]! border-none"
+          onClick={fetchPatient} // fetch again on click
+        >
+          Create Prescription
+        </Button>
 
-  <Button className="h-7 px-2 text-xs">
-    View
-  </Button>
-</div>
-
+        <Button className="h-7 px-2 text-xs">View</Button>
+      </div>
     </div>
   );
 };

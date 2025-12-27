@@ -7,14 +7,14 @@ import DoctorTabs from "./profile/DoctorTabs";
 
 const page = () => {
   return (
-    <div className="flex gap-4">
+    <div className="flex  gap-4">
       {/* 30% */}
-      <div className="w-[30%]  p-4">
+      <div className="w-[30%]   ">
       <Profilepage></Profilepage>
       </div>
 
       {/* 70% */}
-      <div className="w-[70%]  p-4">
+      <div className="w-[70%]  ">
         <DoctorProfile></DoctorProfile>
         <DoctorTabs></DoctorTabs>
       </div>
