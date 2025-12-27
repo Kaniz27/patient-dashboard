@@ -82,18 +82,20 @@ const page = () => {
         <textarea className="input h-24" placeholder="Experience details" />
       </div>
 
-      {/* ================= ADD CHAMBER ================= */}
-      <button
-        onClick={handleAddChamber}
-        className="text-[#41b3cc] font-semibold"
-      >
-        + Add Chamber
-      </button>
-
-      {/* ================= CHAMBER LIST ================= */}
-      {chambers.length > 0 && (
+      {/* ================= CHAMBER / HOSPITAL INFO ================= */}
+      {(chambers.length > 0 || true) && (
         <div className="space-y-6 border-t pt-6">
-          <h3 className="font-semibold text-lg">Chamber / Hospital Info</h3>
+          <div className="flex justify-between items-center">
+            <h3 className="font-semibold text-lg">Chamber / Hospital Info</h3>
+            <button
+              onClick={handleAddChamber}
+              className="text-[#41b3cc] font-semibold"
+            >
+              + Add Chamber
+            </button>
+          </div>
+
+         
 
           {chambers.map((id, index) => (
             <div

@@ -14,6 +14,7 @@ import {
   FaFileMedical,
   FaPrescriptionBottleAlt,
   FaDonate,
+  FaMoneyBillWave,
 } from "react-icons/fa";
 import { LuUsersRound } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
@@ -34,6 +35,12 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
       onClick: () => router.push("/dashboard"),
     },
     {
+      key: "/appointment",
+      icon: <FaCalendarCheck />, // Appointment icon
+      label: "Appointment List",
+      onClick: () => router.push("/appointment"),
+    },
+    {
       key: "/hospital",
       icon: <FaHospital />, // Hospital icon
       label: "Hospital List",
@@ -47,15 +54,9 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
     },
     {
       key: "/income",
-      icon: <FaUserMd />, // Doctor icon
+      icon: <FaMoneyBillWave />, // Income icon
       label: "Income",
       onClick: () => router.push("/income"),
-    },
-    {
-      key: "/appointment",
-      icon: <FaCalendarCheck />, // Appointment icon
-      label: "Appointment List",
-      onClick: () => router.push("/appointment"),
     },
     {
       key: "/prescription",

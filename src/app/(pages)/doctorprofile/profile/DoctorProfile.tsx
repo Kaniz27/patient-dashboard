@@ -36,6 +36,9 @@ const DoctorProfile = () => {
               <p className="text-gray-700 text-sm">
                 MBBS, DDV (DU), MSc (SUB), DCPD (UK)
               </p>
+              <p className="text-gray-700 text-sm">
+               BMDC Registration--
+              </p>
               <p className="text-gray-500 text-sm">
                 <strong>Email:</strong> reyananisd@gmail.com
               </p>
