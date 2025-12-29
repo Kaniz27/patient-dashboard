@@ -11,7 +11,7 @@ import {
   FaHospital,
   FaUserMd,
   FaCalendarCheck,
-  FaFileMedical,
+  
   FaPrescriptionBottleAlt,
   FaDonate,
   FaMoneyBillWave,

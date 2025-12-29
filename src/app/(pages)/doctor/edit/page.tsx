@@ -5,6 +5,7 @@ import Image from "next/image";
 
 const page = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [signaturePreview, setSignaturePreview] = useState<string | null>(null);
   const [chambers, setChambers] = useState<number[]>([]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,12 +15,17 @@ const page = () => {
     }
   };
 
-  // Add new chamber
+  const handleSignatureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSignaturePreview(URL.createObjectURL(file));
+    }
+  };
+
   const handleAddChamber = () => {
     setChambers([...chambers, Date.now()]);
   };
 
-  // Remove chamber
   const handleRemoveChamber = (id: number) => {
     setChambers(chambers.filter((ch) => ch !== id));
   };
@@ -32,30 +38,60 @@ const page = () => {
       <div className="space-y-3">
         <h3 className="font-semibold text-lg">Basic Information</h3>
 
-        <div className="flex items-center gap-4">
-          <div className="w-32 h-32 border rounded-md flex items-center justify-center overflow-hidden">
-            {imagePreview ? (
-              <Image
-                src={imagePreview}
-                alt="Doctor Preview"
-                width={128}
-                height={128}
-                className="object-cover"
+        <div className="flex gap-10 flex-wrap">
+          {/* Profile Image */}
+          <div className="space-y-2">
+            <div className="w-32 h-32 border rounded-md flex items-center justify-center overflow-hidden">
+              {imagePreview ? (
+                <Image
+                  src={imagePreview}
+                  alt="Doctor Preview"
+                  width={128}
+                  height={128}
+                  className="object-cover"
+                />
+              ) : (
+                <span className="text-gray-400 text-sm">No Image</span>
+              )}
+            </div>
+
+            <label className="cursor-pointer text-[#41b3cc] font-medium text-sm">
+              Upload Photo
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
               />
-            ) : (
-              <span className="text-gray-400 text-sm">No Image</span>
-            )}
+            </label>
           </div>
 
-          <label className="cursor-pointer text-[#41b3cc] font-medium">
-            Upload Image
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="hidden"
-            />
-          </label>
+          {/* Signature */}
+          <div className="space-y-2">
+            <div className="w-40 h-20 border rounded-md flex items-center justify-center overflow-hidden bg-gray-50">
+              {signaturePreview ? (
+                <Image
+                  src={signaturePreview}
+                  alt="Signature Preview"
+                  width={160}
+                  height={80}
+                  className="object-contain"
+                />
+              ) : (
+                <span className="text-gray-400 text-sm">No Signature</span>
+              )}
+            </div>
+
+            <label className="cursor-pointer text-[#41b3cc] font-medium text-sm">
+              Upload Signature
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleSignatureChange}
+                className="hidden"
+              />
+            </label>
+          </div>
         </div>
 
         <input className="input" placeholder="Doctor Name" />
@@ -83,48 +119,40 @@ const page = () => {
       </div>
 
       {/* ================= CHAMBER / HOSPITAL INFO ================= */}
-      {(chambers.length > 0 || true) && (
-        <div className="space-y-6 border-t pt-6">
-          <div className="flex justify-between items-center">
-            <h3 className="font-semibold text-lg">Chamber / Hospital Info</h3>
-            <button
-              onClick={handleAddChamber}
-              className="text-[#41b3cc] font-semibold"
-            >
-              + Add Chamber
-            </button>
-          </div>
-
-         
-
-          {chambers.map((id, index) => (
-            <div
-              key={id}
-              className="space-y-3 p-4 border rounded-lg bg-gray-50 relative"
-            >
-              <div className="flex justify-between items-center">
-                <h4 className="font-semibold text-[#41b3cc]">
-                  Chamber {index + 1}
-                </h4>
-
-                <button
-                  onClick={() => handleRemoveChamber(id)}
-                  className="text-red-500 text-sm font-semibold"
-                >
-                  Remove
-                </button>
-              </div>
-
-              <input className="input" placeholder="Hospital Name" />
-              <input
-                className="input"
-                placeholder="Visiting Hour (e.g. 6PM - 9PM)"
-              />
-              <input className="input" placeholder="Visiting Charge (৳)" />
-            </div>
-          ))}
+      <div className="space-y-6 border-t pt-6">
+        <div className="flex justify-between items-center">
+          <h3 className="font-semibold text-lg">Chamber / Hospital Info</h3>
+          <button
+            onClick={handleAddChamber}
+            className="text-[#41b3cc] font-semibold"
+          >
+            + Add Chamber
+          </button>
         </div>
-      )}
+
+        {chambers.map((id, index) => (
+          <div
+            key={id}
+            className="space-y-3 p-4 border rounded-lg bg-gray-50"
+          >
+            <div className="flex justify-between items-center">
+              <h4 className="font-semibold text-[#41b3cc]">
+                Chamber {index + 1}
+              </h4>
+              <button
+                onClick={() => handleRemoveChamber(id)}
+                className="text-red-500 text-sm font-semibold"
+              >
+                Remove
+              </button>
+            </div>
+
+            <input className="input" placeholder="Hospital Name" />
+            <input className="input" placeholder="Visiting Hour" />
+            <input className="input" placeholder="Visiting Charge (৳)" />
+          </div>
+        ))}
+      </div>
 
       {/* ================= ACTION BUTTONS ================= */}
       <div className="flex gap-3 pt-4">
